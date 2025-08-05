@@ -1,42 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login y Registro Animado</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-    <div class="contenedor">
-    <h2>Iniciar sesión</h2>
-<form action="/login" method="POST">
-    <label for="usuario">Usuario:</label>
-    <input type="text" id="usuario" name="usuario" required> <br>
+  <div class="contenedor-general">
+    <!-- Radios para controlar cuál formulario está activo -->
+    <input type="radio" id="login-radio" name="form-toggle" checked hidden />
+    <input type="radio" id="registro-radio" name="form-toggle" hidden />
 
-    <label for="contrasena">Contraseña:</label>
-    <input type="password" id="contrasena" name="contrasena" required> <br>
+    <!-- Formulario Login -->
+    <div class="formulario login">
+      <label for="login-radio" class="titulo">Iniciar sesión</label>
+      <form action="/login" method="POST">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required />
 
-    <button type="submit">Ingresar</button>
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required />
 
+        <button type="submit">Ingresar</button>
+      </form>
     </div>
-</form>
-    <div class="contenedor2">
-<h2>Formulario de Registro</h2>
-<form action="#" method="post">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required>
 
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" name="apellido" required>
+    <!-- Formulario Registro -->
+    <div class="formulario registro">
+      <label for="registro-radio" class="titulo">Formulario de Registro</label>
+      <form action="#" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required />
 
-    <label for="gmail">Gmail:</label>
-    <input type="email" id="gmail" name="gmail" pattern=".+@gmail\.com" required>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required />
 
-    <label for="telefono">Teléfono:</label>
-    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" required>
+        <label for="gmail">Gmail:</label>
+        <input type="email" id="gmail" name="gmail" pattern=".+@gmail\.com" required />
 
-    <button type="submit">Registrarse</button>
-</form>
-</div>
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" required />
+
+        <button type="submit">Registrarse</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
