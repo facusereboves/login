@@ -37,7 +37,7 @@ cursor: pointer;
 /* CONTENEDOR PRINCIPAL */
 .contenedor-general {
 display: flex;
-width: 900px;
+width: 700px;
 height: 500px;
 border: 2px solid rgb(243, 5, 164);
 border-radius: 8px;
@@ -52,62 +52,92 @@ background-color: rgba(146, 33, 180, 0.562);
 flex: 1;
 display: flex;
 flex-direction: column;
-align-items: center;
+align-items: stretch;
+justify-content: flex-start;
 padding: 20px;
 transition: flex 0.5s ease;
 position: relative;
 overflow: hidden;
 }
 
-/* Títulos como labels verticales por defecto */
+/* Línea blanca vertical de 90% en formularios colapsados */
+.formulario::after {
+content: "";
+position: absolute;
+top: 5%;
+height: 90%;
+width: 2px;
+background-color: white;
+transition: all 0.3s ease;
+opacity: 0;
+}
+
+/* Mostrar línea en REGISTRO colapsado (borde izquierdo) */
+#login-radio:checked ~ .registro::after {
+left: 0;
+opacity: 1;
+}
+
+/* Mostrar línea en LOGIN colapsado (borde derecho) */
+#registro-radio:checked ~ .login::after {
+right: 0;
+opacity: 1;
+}
+
+/* Títulos verticales por defecto */
 .titulo {
 writing-mode: vertical-rl;
 transform: rotate(180deg);
 font-size: 16px;
 cursor: pointer;
 user-select: none;
-margin-bottom: 20px;
-border-left: 2px solid white;
 padding-left: 10px;
-height: 100%;
 display: flex;
 align-items: center;
+justify-content: center;
 transition: all 0.5s ease;
+height: auto;
+width: auto;
+box-sizing: border-box;
+border-bottom: none;
+margin-top: 0;
+position: relative;
 }
 
-/* Título horizontal cuando formulario activo (login) */
-#login-radio:checked ~ .login .titulo {
-writing-mode: horizontal-tb;
-transform: none;
-font-size: 24px;
-margin-bottom: 30px;
-border-left: none;
-border-bottom: 2px solid white;
-padding-left: 0;
-padding-bottom: 10px;
-align-self: flex-start;
-}
-
-/* Título horizontal cuando formulario activo (registro) */
+/* Título horizontal cuando formulario activo */
+#login-radio:checked ~ .login .titulo,
 #registro-radio:checked ~ .registro .titulo {
 writing-mode: horizontal-tb;
 transform: none;
 font-size: 24px;
 margin-bottom: 30px;
-border-left: none;
 border-bottom: 2px solid white;
 padding-left: 0;
 padding-bottom: 10px;
 align-self: flex-start;
+width: 100%;
+box-sizing: border-box;
 }
 
-/* Formularios reales ocultos cuando están reducidos */
+/* FORZAR que los formularios ocultos mantengan título arriba */
+#login-radio:checked ~ .registro,
+#registro-radio:checked ~ .login {
+display: flex;
+flex-direction: column;
+align-items: stretch;
+justify-content: flex-start;
+}
+
+/* Formularios reales */
 .formulario form {
 width: 100%;
 display: flex;
 flex-direction: column;
-gap: 10px;
+gap: 6px;
 transition: opacity 0.3s ease;
+max-height: 300px;
+justify-content: flex-start;
+margin-top: 20px;
 }
 
 input {
@@ -130,13 +160,12 @@ font-size: 12px;
 cursor: pointer;
 border: 2px solid rgb(226, 4, 152);
 border-radius: 5px;
-padding: 7px 20px; /* agrega un padding horizontal más amplio */
+padding: 7px 20px;
 transition: all 0.3s ease;
-width: auto; /* que el ancho sea automático */
-max-width: 150px; /* opcional: un máximo para que no crezca demasiado */
-align-self: flex-start; /* que quede centrado en el formulario */
+width: auto;
+max-width: 150px;
+align-self: flex-start;
 }
-
 
 button:hover {
 text-decoration: underline;
@@ -177,5 +206,32 @@ transition: opacity 0.3s ease, height 0.3s ease;
 opacity: 1;
 pointer-events: auto;
 height: auto;
-margin-top: 10px;
+margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.contenedor-general {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+}
+
+.formulario {
+    flex: 1 !important;
+    width: 100%;
+}
+
+.titulo {
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid white;
+    align-self: flex-start;
+}
+
+.formulario::after {
+    display: none !important;
+}
 }

@@ -8,11 +8,8 @@
 </head>
 <body>
   <div class="contenedor-general">
-    <!-- Radios para controlar cuál formulario está activo -->
     <input type="radio" id="login-radio" name="form-toggle" checked hidden />
     <input type="radio" id="registro-radio" name="form-toggle" hidden />
-
-    <!-- Formulario Login -->
     <div class="formulario login">
       <label for="login-radio" class="titulo">Iniciar sesión</label>
       <form action="/login" method="POST">
@@ -25,8 +22,6 @@
         <button type="submit">Ingresar</button>
       </form>
     </div>
-
-    <!-- Formulario Registro -->
     <div class="formulario registro">
       <label for="registro-radio" class="titulo">Formulario de Registro</label>
       <form action="#" method="post">
