@@ -88,7 +88,7 @@ opacity: 1;
 .titulo {
 writing-mode: vertical-rl;
 transform: rotate(180deg);
-font-size: 16px;
+font-size: 20px;
 cursor: pointer;
 user-select: none;
 padding-left: 10px;
